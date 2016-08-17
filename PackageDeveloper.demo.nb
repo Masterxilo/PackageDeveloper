@@ -10,17 +10,823 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[       767,         33]
-NotebookOptionsPosition[       561,         21]
-NotebookOutlinePosition[       907,         36]
-CellTagsIndexPosition[       864,         33]
+NotebookDataLength[     34469,        964]
+NotebookOptionsPosition[     30231,        827]
+NotebookOutlinePosition[     31138,        858]
+CellTagsIndexPosition[     30964,        851]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"<<", "PackageDeveloper`"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"RedefinePublicFunction", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ll", "[", "x_", "]"}], ",", "\[IndentingNewLine]", 
+    "\"\<some random function\>\"", ",", "\[IndentingNewLine]", 
+    RowBox[{"2", "x"}], ",", "\[IndentingNewLine]", "_Real"}], 
+   "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ll", "[", "1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ll", "[", "1.", "]"}]}], "Input",
+ CellChangeTimes->{{3.6803797247021575`*^9, 3.6803797720822973`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"MessageAssert", "::", "assertionFailed"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{RowBox[{\\\"MatchQ\\\", \\\"[\\\
+\", RowBox[{\\\"2\\\", \\\",\\\", \\\"_Real\\\"}], \\\"]\\\"}], \\\"\[Rule]\\\
+\", \\\"False\\\"}]\\)\[NoBreak]. Generating message \
+\[NoBreak]\\!\\(\\*StyleBox[RowBox[{\\\"General\\\", \\\"::\\\", \
+\\\"unexpectedResultType\\\"}], \\\"MessageName\\\"]\\)\[NoBreak]. Stack: \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"StackComplete\\\", \
+\\\",\\\", \\\"Check\\\", \\\",\\\", \\\"CatchAll\\\", \\\",\\\", \
+\\\"Module\\\", \\\",\\\", \\\"Catch\\\", \\\",\\\", \\\"Throw\\\", \
+\\\",\\\", \\\"Hold\\\", \\\",\\\", \\\"Catch\\\", \\\",\\\", \\\"Catch\\\", \
+\\\",\\\", \\\"CompoundExpression\\\", \\\",\\\", \\\"Set\\\", \\\",\\\", \
+\\\"With\\\", \\\",\\\", \\\"CompoundExpression\\\"}], \\\"}\\\"}]\\)\
+\[NoBreak]. Extra Context: \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+\\\"}\\\"}]\\)\[NoBreak]\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680379775284256*^9, 3.6803798265892744`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "unexpectedResultType"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Expected \[NoBreak]\\!\\(\\*RowBox[{\\\"_Real\\\"}]\\)\
+\[NoBreak] got \[NoBreak]\\!\\(\\*RowBox[{\\\"2\\\"}]\\)\[NoBreak]\"\>"}]], \
+"Message", "MSG",
+ CellChangeTimes->{3.680379775284256*^9, 3.680379826640337*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "nocatch"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"$Failed\\\", \\\",\\\", \\\"MessageAssert\\\", \\\",\\\", \
+RowBox[{RowBox[{\\\"MatchQ\\\", \\\"[\\\", RowBox[{\\\"2\\\", \\\",\\\", \
+\\\"_Real\\\"}], \\\"]\\\"}], \\\"\[Rule]\\\", \\\"False\\\"}], \\\",\\\", \
+StyleBox[RowBox[{\\\"General\\\", \\\"::\\\", \\\"unexpectedResultType\\\"}], \
+\\\"MessageName\\\"], \\\",\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"_Real\
+\\\", \\\",\\\", \\\"2\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"_Real\\\", \\\",\\\", \\\"2\\\"}], \
+\\\"}\\\"}]}]}], \\\"}\\\"}]\\)\[NoBreak] returned to top level. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Throw/nocatch\\\", \
+ButtonNote -> \\\"Throw::nocatch\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680379775284256*^9, 3.6803798266743793`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "unexpectedMessages"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unexpected messages where generated. The function \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"ll\\\"}]\\)\[NoBreak] failed unbeknownst to it \
+when called like \[NoBreak]\\!\\(\\*RowBox[{\\\"ll\\\", \\\"[\\\", \\\"1\\\", \
+\\\"]\\\"}]\\)\[NoBreak]. There is a bug\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680379775284256*^9, 3.6803798267184343`*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{3.6803797754074097`*^9, 3.680379826719435*^9}],
+
+Cell[BoxData["2.`"], "Output",
+ CellChangeTimes->{3.6803797754074097`*^9, 3.680379826720436*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Attributes", "@", "Plus"}]], "Input",
+ CellChangeTimes->{{3.680380285868365*^9, 3.6803802874603662`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "Flat", ",", "Listable", ",", "NumericFunction", ",", "OneIdentity", ",", 
+   "Orderless", ",", "Protected"}], "}"}]], "Output",
+ CellChangeTimes->{3.680380287959958*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"fff", "~", "SetAttributes", "~", 
+  RowBox[{"{", 
+   RowBox[{
+   "Flat", ",", "Listable", ",", "NumericFunction", ",", "OneIdentity", ",", 
+    "Orderless", ",", "Protected"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fff", "[", 
+   RowBox[{
+    RowBox[{"Power", "[", 
+     RowBox[{
+      RowBox[{"z", "[", "0", "]"}], ",", "2"}], "]"}], ",", 
+    RowBox[{"Power", "[", 
+     RowBox[{
+      RowBox[{"fff", "[", 
+       RowBox[{"x", ",", 
+        RowBox[{"z", "[", "0", "]"}]}], "]"}], ",", "2"}], "]"}]}], "]"}], 
+  "~", "MatchQ", "~", 
+  RowBox[{"fff", "[", 
+   RowBox[{
+    RowBox[{"Power", "[", 
+     RowBox[{"_", ",", "2"}], "]"}], ".."}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.680380261894434*^9, 3.680380261896437*^9}, {
+  3.680380298134655*^9, 3.6803803368910294`*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.6803802628686666`*^9, {3.6803803010843344`*^9, 3.6803803378061757`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"z", "[", "0", "]"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "+", 
+       RowBox[{"z", "[", "0", "]"}]}], ")"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"z", "[", "1", "]"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "+", 
+       RowBox[{"z", "[", "1", "]"}]}], ")"}], "2"]}], ")"}], "//", 
+  "FullForm"}]], "Input",
+ CellChangeTimes->{{3.6803800306328735`*^9, 3.680380032592317*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   StyleBox[
+    RowBox[{"Plus", "[", 
+     RowBox[{
+      RowBox[{"Power", "[", 
+       RowBox[{
+        RowBox[{"z", "[", "0", "]"}], ",", "2"}], "]"}], ",", 
+      RowBox[{"Power", "[", 
+       RowBox[{
+        RowBox[{"Plus", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{"z", "[", "0", "]"}]}], "]"}], ",", "2"}], "]"}]}], "]"}],
+    ShowSpecialCharacters->False,
+    ShowStringCharacters->True,
+    NumberMarks->True],
+   FullForm], "~", "MatchQ", "~", 
+  RowBox[{"Plus", "[", 
+   RowBox[{
+    RowBox[{"Power", "[", 
+     RowBox[{"_", ",", "2"}], "]"}], ".."}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.680380228966362*^9, 3.680380233676241*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6803801246241727`*^9, 3.6803802176332245`*^9}}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{{3.6803801315718365`*^9, 3.6803802086400013`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"z", "[", "0", "]"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"z", "[", "0", "]"}], "2"]}], ")"}], "~", "MatchQ", "~", 
+  RowBox[{"Plus", "[", 
+   RowBox[{
+    RowBox[{"Power", "[", 
+     RowBox[{"_", ",", "2"}], "]"}], ".."}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6803799980111856`*^9, 3.680380018356555*^9}, {
+  3.680380080710373*^9, 3.6803800882037077`*^9}}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{{3.6803800815984664`*^9, 3.6803800889796762`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Power", "[", 
+   RowBox[{
+    RowBox[{"z", "[", "0", "]"}], ",", "2"}], "]"}], "~", "MatchQ", "~", 
+  RowBox[{"Power", "[", 
+   RowBox[{"_", ",", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.680380061494382*^9, 3.680380064387992*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.6803800000467243`*^9, 3.680380018686967*^9}, 
+   3.680380065525426*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"<<", "PackagePackage`"}], "\[IndentingNewLine]", 
+ RowBox[{"??", "PackagePackage`**"}]}], "Input",
+ CellChangeTimes->{{3.680363820516487*^9, 3.6803638217196865`*^9}, {
+  3.680364022000469*^9, 3.6803640269235864`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"f", "::", "shdw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Symbol \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"f\\\\\\\"\\\"}]\\)\[NoBreak] appears \
+in multiple contexts \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"\\\\\\\
+\"PackagePackage`\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\"Global`\\\\\\\"\\\"}], \
+\\\"}\\\"}]\\)\[NoBreak]; definitions in context \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"PackagePackage`\\\\\\\"\\\"}]\\)\
+\[NoBreak] may shadow or be shadowed by other definitions. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/shdw\\\", \
+ButtonNote -> \\\"PackagePackage`f::shdw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6803797103682566`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"h", "::", "shdw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Symbol \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"h\\\\\\\"\\\"}]\\)\[NoBreak] appears \
+in multiple contexts \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"\\\\\\\
+\"PackagePackage`\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\"Global`\\\\\\\"\\\"}], \
+\\\"}\\\"}]\\)\[NoBreak]; definitions in context \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"PackagePackage`\\\\\\\"\\\"}]\\)\
+\[NoBreak] may shadow or be shadowed by other definitions. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/shdw\\\", \
+ButtonNote -> \\\"PackagePackage`h::shdw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680379710452362*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ DynamicModuleBox[{Typeset`open$$ = True}, 
+  PaneSelectorBox[{False->
+   RowBox[{
+    OpenerBox[Dynamic[Typeset`open$$],
+     ImageSize->Small], 
+    StyleBox["PackagePackage`", "InfoHeading"]}], True->GridBox[{
+     {
+      RowBox[{
+       OpenerBox[Dynamic[Typeset`open$$],
+        ImageSize->Small], 
+       StyleBox["PackagePackage`", "InfoHeading"]}]},
+     {GridBox[{
+        {
+         ButtonBox["ass",
+          BaseStyle->"InformationLinkLF",
+          
+          ButtonData:>{
+           "Info2693680386910-6152649", {"ass", "PackagePackage`"}},
+          ButtonNote->"PackagePackage`"], 
+         ButtonBox["f",
+          BaseStyle->"InformationLinkLF",
+          ButtonData:>{"Info2693680386910-6152649", {"f", "PackagePackage`"}},
+          ButtonNote->"PackagePackage`"], 
+         ButtonBox["h",
+          BaseStyle->"InformationLinkLF",
+          ButtonData:>{"Info2693680386910-6152649", {"h", "PackagePackage`"}},
+          ButtonNote->"PackagePackage`"]}
+       },
+       DefaultBaseStyle->"InfoGrid",
+       GridBoxItemSize->{"Columns" -> {{
+            Scaled[0.31666666666666665`]}}}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}]}, 
+   Dynamic[Typeset`open$$],
+   ImageSize->Automatic]]], "Print", "InfoCell",
+ CellChangeTimes->{3.6803797105464783`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ass[\!\(\*StyleBox[\\\"\\\", \\\"TI\\\"]\)]\\n\tuses \
+Assert\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info2693680386910-6152649"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"PackageDeveloper`Private`call$", ":", 
+          RowBox[{"ass", "[", "]"}]}], ":=", 
+         RowBox[{"StackComplete", "[", 
+          RowBox[{"Check", "[", 
+           RowBox[{
+            RowBox[{"CatchAll", "[", 
+             RowBox[{
+              RowBox[{"With", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"PackageDeveloper`Private`result$", "=", 
+                  RowBox[{"Assert", "[", 
+                   RowBox[{"False", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"82", ",", "\<\"PackagePackage`\"\>"}], "}"}]}], 
+                   "]"}]}], "}"}], ",", 
+                RowBox[{
+                 RowBox[{"MessageAssert", "[", 
+                  RowBox[{
+                   RowBox[{"MatchQ", "[", 
+                    RowBox[{"PackageDeveloper`Private`result$", ",", "_"}], 
+                    "]"}], ",", 
+                   StyleBox[
+                    RowBox[{"General", "::", "unexpectedResultType"}], 
+                    "MessageName"], ",", "_", ",", 
+                   "PackageDeveloper`Private`result$"}], "]"}], ";", 
+                 "PackageDeveloper`Private`result$"}]}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"Message", "[", 
+                  RowBox[{
+                   StyleBox[
+                    RowBox[{"Throw", "::", "nocatch"}], "MessageName"], ",", 
+                   "##1"}], "]"}], ";", "$Failed"}], ")"}], "&"}]}], "]"}], 
+            ",", 
+            RowBox[{
+             RowBox[{"Message", "[", 
+              RowBox[{
+               StyleBox[
+                RowBox[{"General", "::", "unexpectedMessages"}], 
+                "MessageName"], ",", "ass", ",", 
+               
+               RowBox[{"\<\"HoldForm\"\>", "[", 
+                "PackageDeveloper`Private`call$", "]"}]}], "]"}], ";", 
+             "$Failed"}]}], "]"}], "]"}]}]},
+       {" "},
+       {
+        RowBox[{"ass", "/:", 
+         RowBox[{"PackageDeveloper`Private`a", ":", 
+          RowBox[{
+           RowBox[{"Sequence", "[", "ass", "]"}], "[", "___", "]"}]}], ":=", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"StackInhibit", "[", 
+            RowBox[{"Message", "[", 
+             RowBox[{
+              StyleBox[
+               RowBox[{"General", "::", "undefined"}], "MessageName"], ",", 
+              
+              RowBox[{"\<\"HoldForm\"\>", "[", "PackageDeveloper`Private`a", 
+               "]"}], ",", 
+              RowBox[{"Stack", "[", "]"}]}], "]"}], "]"}], ";", "$Failed"}], 
+          ")"}]}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]},
+    {" "},
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"SyntaxInformation", "[", "ass", "]"}], "=", 
+         RowBox[{"{", 
+          RowBox[{"\<\"ArgumentsPattern\"\>", "\[Rule]", 
+           RowBox[{"{", "}"}]}], "}"}]}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  Definition[PackagePackage`ass],
+  Editable->False]], "Print",
+ CellTags->"Info2693680386910-6152649"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"h", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.6803646909447517`*^9, 3.68036469150729*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"MessageAssert", "::", "assertionFailed"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"False\\\", \\\"\[Rule]\\\", \
+\\\"False\\\"}]\\)\[NoBreak]. Generating message \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"<no \
+message>\\\\\\\"\\\"}]\\)\[NoBreak]. Stack: \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"StackComplete\\\", \
+\\\",\\\", \\\"Check\\\", \\\",\\\", \\\"CatchAll\\\", \\\",\\\", \
+\\\"Module\\\", \\\",\\\", \\\"Catch\\\", \\\",\\\", \\\"Throw\\\", \
+\\\",\\\", \\\"Hold\\\", \\\",\\\", \\\"Catch\\\", \\\",\\\", \\\"Catch\\\", \
+\\\",\\\", \\\"CompoundExpression\\\", \\\",\\\", \\\"Set\\\"}], \
+\\\"}\\\"}]\\)\[NoBreak]. Context: \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"\\\\\\\"\\\", \\\",\\\", \\\"89\\\"}], \\\"}\\\"}]\\)\
+\[NoBreak]\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.680364691976064*^9, 3.6803647142989736`*^9}, 
+   3.680364762158608*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "nocatch"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"$Failed\\\", \\\",\\\", \\\"MessageAssert\\\", \\\",\\\", \
+RowBox[{\\\"False\\\", \\\"\[Rule]\\\", \\\"False\\\"}], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", \\\"}\\\"}], \\\"\[Rule]\\\", RowBox[{\\\"{\\\", \
+\\\"}\\\"}]}]}], \\\"}\\\"}]\\)\[NoBreak] returned to top level. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Throw/nocatch\\\", \
+ButtonNote -> \\\"Throw::nocatch\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.680364691976064*^9, 3.6803647142989736`*^9}, 
+   3.6803647621898603`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PackageDeveloper`Private`PackageDeveloper", "::", "messages"}], 
+   "MessageName"], 
+  RowBox[{":", " "}], "\<\"-- Message text not found --\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{{3.680364691976064*^9, 3.6803647142989736`*^9}, 
+   3.680364762346118*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{{3.6803646921635685`*^9, 3.6803647144552274`*^9}, 
+   3.680364762346118*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f", "[", "1", "]"}], "//", 
+  "WhichDownValue"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "6", "]"}], "//", 
+  "WhichDownValue"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"a", ",", "b"}], "]"}], "//", "WhichDownValue"}], "//", 
+  "DownValueUsage"}], "\[IndentingNewLine]", 
+ RowBox[{"f", "[", 
+  RowBox[{"1", ",", "2", ",", "3"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"f", "[", "3", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "f"}]}], "Input",
+ CellChangeTimes->{{3.6803638366660786`*^9, 3.6803639019404755`*^9}, {
+  3.680364022813015*^9, 3.68036404131474*^9}}],
+
+Cell[BoxData[
+ RowBox[{"HoldPattern", "[", 
+  RowBox[{"f", "[", "PackagePackage`Private`x_", "]"}], "]"}]], "Output",
+ CellChangeTimes->{{3.680363857792021*^9, 3.680363902518612*^9}, {
+  3.6803640316948614`*^9, 3.6803640416741133`*^9}, {3.6803641318493996`*^9, 
+  3.6803641340057526`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"HoldPattern", "[", 
+  RowBox[{
+   RowBox[{"f", "[", "PackagePackage`Private`x_", "]"}], "/;", 
+   RowBox[{"PackagePackage`Private`x", ">", "5"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.680363857792021*^9, 3.680363902518612*^9}, {
+  3.6803640316948614`*^9, 3.6803640416741133`*^9}, {3.6803641318493996`*^9, 
+  3.6803641340057526`*^9}}],
+
+Cell[BoxData["\<\"f[\\!\\(\\*StyleBox[\\\"x_, y_\\\", \\\"TI\\\"]\\)] x + y\"\
+\>"], "Output",
+ CellChangeTimes->{{3.680363857792021*^9, 3.680363902518612*^9}, {
+  3.6803640316948614`*^9, 3.6803640416741133`*^9}, {3.6803641318493996`*^9, 
+  3.680364134021363*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "undefined"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"f\\\", \\\"[\\\", \
+RowBox[{\\\"1\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"3\\\"}], \
+\\\"]\\\"}]\\)\[NoBreak] is undefined. Check argument count and definition \
+conditions. Stack: \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"CompoundExpression\\\", \\\",\\\", \\\"Message\\\"}], \\\"}\\\"}]\
+\\)\[NoBreak]\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.680363857807646*^9, 3.680363902549863*^9}, {
+  3.6803640317261143`*^9, 3.6803640416897345`*^9}, {3.680364131880666*^9, 
+  3.6803641340370045`*^9}}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{{3.680363857792021*^9, 3.680363902518612*^9}, {
+  3.6803640316948614`*^9, 3.6803640416741133`*^9}, {3.6803641318493996`*^9, 
+  3.6803641340370045`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Integrate", "::", "argmu"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], \
+"\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"Integrate\\\"}]\\)\[NoBreak] called with \
+1 argument; \[NoBreak]\\!\\(\\*RowBox[{\\\"2\\\"}]\\)\[NoBreak] or more \
+arguments are expected. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/argmu\\\", ButtonNote -> \
+\\\"Integrate::argmu\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.680363857807646*^9, 3.680363902549863*^9}, {
+  3.6803640317261143`*^9, 3.6803640416897345`*^9}, {3.680364131880666*^9, 
+  3.68036413408388*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "messages"}], "MessageName"], 
+  RowBox[{":", " "}], "\<\"-- Message text not found --\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{{3.680363857807646*^9, 3.680363902549863*^9}, {
+  3.6803640317261143`*^9, 3.6803640416897345`*^9}, {3.680364131880666*^9, 
+  3.6803641341307573`*^9}}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{{3.680363857792021*^9, 3.680363902518612*^9}, {
+  3.6803640316948614`*^9, 3.6803640416741133`*^9}, {3.6803641318493996`*^9, 
+  3.6803641341307573`*^9}}],
+
+Cell[BoxData[
+ StyleBox["\<\"f[\\!\\(\\*StyleBox[\\\"x_\\\", \\\"TI\\\"]\\)] /; x > 5 \
+42\\nf[\\!\\(\\*StyleBox[\\\"x_\\\", \\\"TI\\\"]\\)] integrates x... not! \
+Demonstrates a function generating a message (\\\"package internal \
+bug\\\")\\nf[\\!\\(\\*StyleBox[\\\"x_, y_\\\", \\\"TI\\\"]\\)] x + y\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.680364134193244*^9},
+ CellTags->"Info513680371334-7142360"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"<<", "PackagePackage`"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"??", "PackagePackage`**"}]}], "Input",
+ CellChangeTimes->{3.68036440289596*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ass", "::", "shdw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Symbol \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"ass\\\\\\\"\\\"}]\\)\[NoBreak] appears \
+in multiple contexts \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"\\\\\\\
+\"PackagePackage`\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\"Global`\\\\\\\"\\\"}], \
+\\\"}\\\"}]\\)\[NoBreak]; definitions in context \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"PackagePackage`\\\\\\\"\\\"}]\\)\
+\[NoBreak] may shadow or be shadowed by other definitions. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/shdw\\\", \
+ButtonNote -> \\\"PackagePackage`ass::shdw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680364420998657*^9}],
+
+Cell[BoxData[
+ DynamicModuleBox[{Typeset`open$$ = True}, 
+  PaneSelectorBox[{False->
+   RowBox[{
+    OpenerBox[Dynamic[Typeset`open$$],
+     ImageSize->Small], 
+    StyleBox["PackagePackage`", "InfoHeading"]}], True->GridBox[{
+     {
+      RowBox[{
+       OpenerBox[Dynamic[Typeset`open$$],
+        ImageSize->Small], 
+       StyleBox["PackagePackage`", "InfoHeading"]}]},
+     {GridBox[{
+        {
+         ButtonBox["ass",
+          BaseStyle->"InformationLinkLF",
+          ButtonData:>{"Info683680371621-7142360", {"ass", "PackagePackage`"}},
+          ButtonNote->"PackagePackage`"], 
+         ButtonBox["f",
+          BaseStyle->"InformationLinkLF",
+          ButtonData:>{"Info683680371621-7142360", {"f", "PackagePackage`"}},
+          ButtonNote->"PackagePackage`"], 
+         ButtonBox["h",
+          BaseStyle->"InformationLinkLF",
+          ButtonData:>{"Info683680371621-7142360", {"h", "PackagePackage`"}},
+          ButtonNote->"PackagePackage`"]}
+       },
+       DefaultBaseStyle->"InfoGrid",
+       GridBoxItemSize->{"Columns" -> {{
+            Scaled[0.31666666666666665`]}}}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}]}, 
+   Dynamic[Typeset`open$$],
+   ImageSize->Automatic]]], "Print", "InfoCell",
+ CellChangeTimes->{3.680364421061159*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$Line"], "Input",
+ CellChangeTimes->{{3.680364580659365*^9, 3.680364581346908*^9}}],
+
+Cell[BoxData["78"], "Output",
+ CellChangeTimes->{3.680364581643798*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$InputFileName"], "Input",
+ CellChangeTimes->{{3.680364584487666*^9, 3.680364610721241*^9}}],
+
+Cell[BoxData["\<\"\"\>"], "Output",
+ CellChangeTimes->{{3.6803645994998503`*^9, 3.680364610986864*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ass", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.680364556899944*^9, 3.6803645575999985`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Assert", "::", "asrtfl"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Assertion \[NoBreak]\\!\\(\\*RowBox[{\\\"False\\\"}]\\)\
+\[NoBreak] at line \[NoBreak]\\!\\(\\*RowBox[{\\\"82\\\"}]\\)\[NoBreak] in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"PackagePackage`\\\\\\\"\\\"}]\\)\
+\[NoBreak] failed. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\
+\\\"Link\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/Assert\\\", \
+ButtonNote -> \\\"Assert::asrtfl\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6803645579750204`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PackageDeveloper`Private`PackageDeveloper", "::", "messages"}], 
+   "MessageName"], 
+  RowBox[{":", " "}], "\<\"-- Message text not found --\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{3.68036455813127*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{3.68036455813127*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"<<", "paul`"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fff", "[", "]"}], "//", "WhichDownValue"}]}], "Input",
+ CellChangeTimes->{{3.680364436184367*^9, 3.680364475892794*^9}, {
+  3.6803645370321417`*^9, 3.6803645383759456`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Missing", "[", 
+  RowBox[{"\<\"NotFound\"\>", ",", "WhichDownValue", ",", 
+   RowBox[{"fff", "[", "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.6803645386728334`*^9, 3.680364551555055*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Missing", "[", "\"\<NotFound\>\"", "]"}], "//"}]], "Input",
+ CellChangeTimes->{{3.680364500539852*^9, 3.680364500649233*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "h"}]], "Input",
+ CellChangeTimes->{{3.6803641595273337`*^9, 3.68036416294936*^9}}],
+
+Cell[BoxData[
+ StyleBox["\<\"h[\!\(\*StyleBox[\\\"x_\\\", \\\"TI\\\"]\)] uses internal \
+function g to integrate x. Try to debug.\\nh[\!\(\*StyleBox[\\\"\\\", \
+\\\"TI\\\"]\)] uses MessageAssert\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.680364203374935*^9},
+ CellTags->"Info583680371403-7142360"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"h", "[", "5", "]"}]], "Input",
+ CellChangeTimes->{{3.680364207029327*^9, 3.680364208232486*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Integrate", "::", "argmu"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], \
+"\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"Integrate\\\"}]\\)\[NoBreak] called with \
+1 argument; \[NoBreak]\\!\\(\\*RowBox[{\\\"2\\\"}]\\)\[NoBreak] or more \
+arguments are expected. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/argmu\\\", ButtonNote -> \
+\\\"Integrate::argmu\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6803642085293884`*^9, 3.6803642229266977`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PackageDeveloper`Private`PackageDeveloper", "::", "messages"}], 
+   "MessageName"], 
+  RowBox[{":", " "}], "\<\"-- Message text not found --\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{3.6803642085293884`*^9, 3.680364255037712*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{3.680364208670019*^9, 3.680364255037712*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"h", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.680364278414616*^9, 3.6803642789771547`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"MessageAssert", "::", "assertionFailed"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"False\\\", \\\"\[Rule]\\\", \
+\\\"False\\\"}]\\)\[NoBreak]. Generating message \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"<no \
+message>\\\\\\\"\\\"}]\\)\[NoBreak]. Stack: \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \\\"MakeExpression\\\", \\\"}\\\"}]\\)\
+\[NoBreak]\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6803642795240374`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Throw", "::", "nocatch"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Uncaught \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"$Failed\\\", \\\",\\\", \\\"MessageAssert\\\", \\\",\\\", \
+RowBox[{\\\"False\\\", \\\"\[Rule]\\\", \\\"False\\\"}], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", \\\"}\\\"}], \\\"\[Rule]\\\", RowBox[{\\\"{\\\", \
+\\\"}\\\"}]}]}], \\\"}\\\"}]\\)\[NoBreak] returned to top level. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Throw/nocatch\\\", \
+ButtonNote -> \\\"Throw::nocatch\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6803642795396633`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PackageDeveloper`Private`PackageDeveloper", "::", "messages"}], 
+   "MessageName"], 
+  RowBox[{":", " "}], "\<\"-- Message text not found --\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{3.6803642796959186`*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{3.6803642796959186`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ass", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.6803643452035265`*^9, 3.680364345937936*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ass", "[", "]"}]], "Output",
+ CellChangeTimes->{{3.680364346266036*^9, 3.680364374951979*^9}}]
+}, Open  ]]
 },
 WindowSize->{972, 835},
-WindowMargins->{{273, Automatic}, {-178, Automatic}},
+WindowMargins->{{124, Automatic}, {Automatic, 69}},
 FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -28,16 +834,139 @@ StyleDefinitions->"Default.nb"
 
 (* Internal cache information *)
 (*CellTagsOutline
-CellTagsIndex->{}
+CellTagsIndex->{
+ "Info2693680386910-6152649"->{
+  Cell[11473, 319, 168, 3, 60, "Print",
+   CellTags->"Info2693680386910-6152649"],
+  Cell[11644, 324, 3873, 100, 222, "Print",
+   CellTags->"Info2693680386910-6152649"]},
+ "Info513680371334-7142360"->{
+  Cell[21630, 579, 423, 7, 78, "Print",
+   CellTags->"Info513680371334-7142360"]},
+ "Info583680371403-7142360"->{
+  Cell[26767, 728, 313, 5, 60, "Print",
+   CellTags->"Info583680371403-7142360"]}
+ }
 *)
 (*CellTagsIndex
-CellTagsIndex->{}
+CellTagsIndex->{
+ {"Info2693680386910-6152649", 30542, 837},
+ {"Info513680371334-7142360", 30744, 842},
+ {"Info583680371403-7142360", 30858, 845}
+ }
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 591, 11, 192, "Input"],
+Cell[1174, 35, 1094, 18, 41, "Message"],
+Cell[2271, 55, 352, 8, 22, "Message"],
+Cell[2626, 65, 1033, 17, 22, "Message"],
+Cell[3662, 84, 480, 9, 22, "Message"],
+Cell[4145, 95, 100, 1, 31, "Output"],
+Cell[4248, 98, 96, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4381, 104, 129, 2, 31, "Input"],
+Cell[4513, 108, 212, 5, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4762, 118, 818, 23, 52, "Input"],
+Cell[5583, 143, 128, 2, 31, "Output"]
+}, Open  ]],
+Cell[5726, 148, 533, 17, 33, "Input"],
+Cell[6262, 167, 692, 22, 31, "Input"],
+Cell[CellGroupData[{
+Cell[6979, 193, 96, 1, 31, InheritFromParent],
+Cell[7078, 196, 102, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7217, 202, 455, 13, 33, "Input"],
+Cell[7675, 217, 102, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7814, 223, 272, 7, 31, "Input"],
+Cell[8089, 232, 125, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8251, 239, 242, 4, 52, "Input"],
+Cell[8496, 245, 812, 15, 41, "Message"],
+Cell[9311, 262, 810, 15, 41, "Message"],
+Cell[CellGroupData[{
+Cell[10146, 281, 1324, 36, 55, "Print"],
+Cell[11473, 319, 168, 3, 60, "Print",
+ CellTags->"Info2693680386910-6152649"],
+Cell[11644, 324, 3873, 100, 222, "Print",
+ CellTags->"Info2693680386910-6152649"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15566, 430, 116, 2, 31, "Input"],
+Cell[15685, 434, 977, 18, 41, "Message"],
+Cell[16665, 454, 770, 14, 22, "Message"],
+Cell[17438, 470, 311, 8, 22, "Message"],
+Cell[17752, 480, 130, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17919, 487, 655, 17, 132, "Input"],
+Cell[18577, 506, 289, 5, 31, "Output"],
+Cell[18869, 513, 361, 7, 31, "Output"],
+Cell[19233, 522, 264, 4, 31, "Output"],
+Cell[19500, 528, 669, 13, 22, "Message"],
+Cell[20172, 543, 206, 3, 31, "Output"],
+Cell[20381, 548, 685, 14, 22, "Message"],
+Cell[21069, 564, 349, 8, 22, "Message"],
+Cell[21421, 574, 206, 3, 31, "Output"],
+Cell[21630, 579, 423, 7, 78, "Print",
+ CellTags->"Info513680371334-7142360"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22090, 591, 182, 4, 52, "Input"],
+Cell[22275, 597, 816, 15, 41, "Message"],
+Cell[23094, 614, 1296, 34, 55, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24427, 653, 97, 1, 31, "Input"],
+Cell[24527, 656, 71, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24635, 662, 106, 1, 31, "Input"],
+Cell[24744, 665, 103, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24884, 671, 119, 2, 31, "Input"],
+Cell[25006, 675, 593, 11, 22, "Message"],
+Cell[25602, 688, 258, 7, 22, "Message"],
+Cell[25863, 697, 75, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25975, 703, 259, 5, 52, "Input"],
+Cell[26237, 710, 216, 4, 31, "Output"]
+}, Open  ]],
+Cell[26468, 717, 160, 3, 31, InheritFromParent],
+Cell[CellGroupData[{
+Cell[26653, 724, 111, 2, 31, "Input"],
+Cell[26767, 728, 313, 5, 60, "Print",
+ CellTags->"Info583680371403-7142360"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27117, 738, 120, 2, 31, "Input"],
+Cell[27240, 742, 588, 12, 22, "Message"],
+Cell[27831, 756, 283, 7, 22, "Message"],
+Cell[28117, 765, 98, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28252, 771, 117, 2, 31, "Input"],
+Cell[28372, 775, 500, 11, 22, "Message"],
+Cell[28875, 788, 718, 13, 22, "Message"],
+Cell[29596, 803, 261, 7, 22, "Message"],
+Cell[29860, 812, 78, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29975, 818, 119, 2, 31, "Input"],
+Cell[30097, 822, 118, 2, 31, "Output"]
+}, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 

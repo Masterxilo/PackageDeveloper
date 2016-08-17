@@ -18,7 +18,9 @@ Contains various meta commands to make package development easier.
 
 (* TODO error checking
 TODO support = definitions
-TODO allow hiding internal operations such as destructuring of data if desired (easier to understand)*)
+TODO allow hiding internal operations such as destructuring of data if desired (easier to understand)
+
+TODO don't force usage message for different internal variants: maybe separate internally? overhead!*)
 BeginPackage["PackageDeveloper`", {"paul`"}]
 
 
@@ -56,11 +58,18 @@ General::undefined = "`` is undefined. Check argument count and definition condi
 DownValueUsage::usage = "Extended usage information for a specific down value (HoldPattern left hand side). Use in combination with
 WhichDownValue"
 
-General::alreadyDefined = "`` is already defined"
+General::alreadyDefined = "`` is already defined (or DownValueUsage was not properly cleaned: Are PublicSymbols[] set?)"
 
 MessageAssert::assertionFailed = "``. Generating message ``. Stack: ``. Extra Context: ``"
 
 SameQOrUndefined
+
+RedefinePublicFunction::usage = "Same as define, but first clears the symbol and its DownValueUsage"
+
+General::unexpectedMessages = "Unexpected messages where generated. The function `` failed unbeknownst to it when called like ``. There is a bug"
+
+General::unexpectedResultType = "Expected `` got ``"
+
 
 Begin["`Private`"]
 
@@ -121,7 +130,7 @@ SyntaxInformationArgumentPatternForFixedArgumentCountRange[
   min_Integer, max_Integer] /; min <= max :=
     Table[_, min]~Join~Table[_., max - min]
 
-DefinePublicFunction[f__Symbol, def_, args_List, cond : Null | _, usage_String, body_] := (
+DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, body_, resultPattern_ : _] := (
 
   MessageAssert[Head@DownValueUsage@HoldPattern@def === DownValueUsage, General::alreadyDefined, HoldForm@def];
 
@@ -137,11 +146,12 @@ DefinePublicFunction[f__Symbol, def_, args_List, cond : Null | _, usage_String, 
 
   StringJoinToOrSet[f::usage, DownValueUsage@HoldPattern@def, StringRiffle -> "\n"];
 
-  def := StackComplete@Check[CatchAll[ (*StackComplete for debuggability, remove in release version *)
-    body
+  call : def := StackComplete@Check[CatchAll[ (*StackComplete for debuggability, remove in release version *)
+
+    {result=body}~With~(MessageAssert[result~MatchQ~resultPattern, General::unexpectedResultType, resultPattern, HoldForm@result]; result)
 
     , (Message[Throw::nocatch, ##];$Failed )&]
-    , Message[PackageDeveloper::messages];$Failed];
+    , Message[General::unexpectedMessages, f, HoldForm@call];$Failed];
 
   Module[{
     minmaxargc = MinMax@DeleteMissing@{CountArgumentsFromSyntaxInformation@f, Length@args}
@@ -153,11 +163,28 @@ DefinePublicFunction[f__Symbol, def_, args_List, cond : Null | _, usage_String, 
   DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a, Stack[]];$Failed));
 );
 
-DefinePublicFunction[d : f_Symbol[args___], usage_String, body_] := DefinePublicFunction[f, d, {args}, Null, usage, body]
+DefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _] :=
+    DefinePublicFunction[f, d, {args}, Null, usage, body,resultPattern]
 
-DefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_] := DefinePublicFunction[f, d, {args}, c, usage, body]
+DefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_, resultPattern_ : _] :=
+    DefinePublicFunction[f, d, {args}, c, usage, body,resultPattern]
 
+RedefinePublicFunction~SetAttributes~HoldAll
+RedefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _] := (
+    ClearAll[f];
+    PublicSymbols[f];
+    DefinePublicFunction[d, usage, body,resultPattern];
+);
+
+RedefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_, resultPattern_ : _] := (
+  ClearAll[f];
+  PublicSymbols[f];
+  DefinePublicFunction[d, usage, body,resultPattern];
+);
+
+(* errors *)
 a:DefinePublicFunction[___] := (Message[General::undefined, HoldForm@a, Stack[]];$Failed);
+a:RedefinePublicFunction[___] := (Message[General::undefined, HoldForm@a, Stack[]];$Failed);
 
 
 End[] (* `Private` *)
