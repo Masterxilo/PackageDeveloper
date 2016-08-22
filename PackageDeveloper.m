@@ -109,7 +109,9 @@ MessageAssert[a_===b_, r___] := MessageAssert[SameQOrUndefined@@{a,b}, r];
 
 MessageAssert[e_, message_MessageName, args___] := StackInhibit@If[!TrueQ@e
   ,
+  (*
   Message[MessageAssert::assertionFailed, Rule[HoldForm@e, e], HoldForm@message, Most@Stack[], {(*$InputFileName, $Line doesn't work*)}];
+  *)
   Message[message, args];
   Throw@{$Failed, MessageAssert, Rule[HoldForm@e, e], HoldForm@message, Rule[HoldForm@{args}, {args}]}
 ];
@@ -151,7 +153,7 @@ DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, b
     {result=body}~With~(MessageAssert[result~MatchQ~resultPattern, General::unexpectedResultType, resultPattern, HoldForm@result]; result)
 
     , (Message[Throw::nocatch, ##];$Failed )&]
-    , Message[General::unexpectedMessages, f, HoldForm@call];$Failed];
+    , Message[General::unexpectedMessages, f, HoldForm@call];Throw@$Failed];
 
   Module[{
     minmaxargc = MinMax@DeleteMissing@{CountArgumentsFromSyntaxInformation@f, Length@args}
@@ -160,7 +162,7 @@ DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, b
   ];
 
   DownValues@f = DeleteCases[DownValues@f, HoldPattern[Verbatim@HoldPattern[a : f[___]] :> _]];
-  DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a, Stack[]];$Failed));
+  DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a, Stack[]];Throw@$Failed));
 );
 
 DefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _] :=
