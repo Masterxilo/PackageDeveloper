@@ -132,13 +132,15 @@ SyntaxInformationArgumentPatternForFixedArgumentCountRange[
   min_Integer, max_Integer] /; min <= max :=
     Table[_, min]~Join~Table[_., max - min]
 
+(* -- core --- *)
 DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, body_, resultPattern_ : _] := (
+  MessageAssert[Context@f =!= "System`", General::illegalContext, Context@f =!= "System`", HoldForm@def];
 
   MessageAssert[Head@DownValueUsage@HoldPattern@def === DownValueUsage, General::alreadyDefined, HoldForm@def];
 
-  DownValueUsage[Verbatim[HoldPattern@def]] = StringTemplate["``[\!\(\*StyleBox[\"``\", \"TI\"]\)]``\n\t``"][
+  DownValueUsage[Verbatim[HoldPattern@def]] = StringTemplate["\!\(\*RowBox[{\"``\", \"[\", ``, \"]\"}]\)`` ``"][
     ToString@f
-    , CommaRiffle[ToString /@ args]
+    , StringRiffle[StringTemplate["StyleBox[\"``\", \"TI\"]"] /@ ToString /@ args, ",\",\","]
     , If[Hold@cond === Hold@Null,"", " /; "<>ToString@Unevaluated@cond]
     , usage
   ];
@@ -153,7 +155,7 @@ DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, b
     {result=body}~With~(MessageAssert[result~MatchQ~resultPattern, General::unexpectedResultType, resultPattern, HoldForm@result]; result)
 
     , (Message[Throw::nocatch, ##];$Failed )&]
-    , Message[General::unexpectedMessages, f, HoldForm@call];Throw@$Failed];
+    , Message[General::unexpectedMessages, f, HoldForm@call];Throw@"unexpectedMessages"];
 
   Module[{
     minmaxargc = MinMax@DeleteMissing@{CountArgumentsFromSyntaxInformation@f, Length@args}
@@ -162,8 +164,10 @@ DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, b
   ];
 
   DownValues@f = DeleteCases[DownValues@f, HoldPattern[Verbatim@HoldPattern[a : f[___]] :> _]];
-  DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a, Stack[]];Throw@$Failed));
+  DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a, Stack[]];Throw@Missing["Definition",HoldForm@a]));
 );
+
+(* usability *)
 
 DefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _] :=
     DefinePublicFunction[f, d, {args}, Null, usage, body,resultPattern]
