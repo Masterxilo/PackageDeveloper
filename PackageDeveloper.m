@@ -53,23 +53,25 @@ Opening a Dialog[] and reporting where we are is a starting point."
 BeginPackage2::usage = "Like BeginPackage, but anything declared within that is
 not in DeclarePublicFunction is put in the `Private` namespace."
 
-General::undefined = "`` is undefined. Check argument count and definition conditions. Stack: ``"
 
 DownValueUsage::usage = "Extended usage information for a specific down value (HoldPattern left hand side). Use in combination with
 WhichDownValue"
 
-General::alreadyDefined = "`` is already defined (or DownValueUsage was not properly cleaned: Are PublicSymbols[] set?)"
-
-MessageAssert::assertionFailed = "``. Generating message ``. Stack: ``. Extra Context: ``"
 
 SameQOrUndefined
 
 RedefinePublicFunction::usage = "Same as define, but first clears the symbol and its DownValueUsage"
 
-General::unexpectedMessages = "Unexpected messages where generated. The function `` failed unbeknownst to it when called like ``. There is a bug"
+General::undefined = "Undefined function call ``. Check argument count and definition conditions."
 
-General::unexpectedResultType = "Expected `` got ``"
+General::illegalContext = "Illegal context of definition symbol `` in definition ``."
+General::alreadyDefined = "Already defined `` (or DownValueUsage was not properly cleaned: Are PublicSymbols[] set?). "
 
+
+General::unexpectedMessages = "Unexpected messages generated in `` when called like ``. There is a bug. ``"
+(*MessageAssert::assertionFailed = "``. Generating message ``. ``"*)
+General::unexpectedResultType = "Expected result type `` got ``. ``"
+Throw::nocatch = "Exception was not caught. ``"
 
 Begin["`Private`"]
 
@@ -107,20 +109,23 @@ SameQOrUndefined /: Format[SameQOrUndefined@@{a_,b_}, StandardForm] := Row@{a,"=
 MessageAssert[a_===b_, r___] := MessageAssert[SameQOrUndefined@@{a,b}, r];
 
 
-MessageAssert[e_, message_MessageName, args___] := StackInhibit@If[!TrueQ@e
+MessageAssert[e_, message_MessageName, args___] := Assert[e,StringTemplate[message][args]] (* todo format args differently, e.g. using input form*)
+(*StackInhibit@If[!TrueQ@e
   ,
   (*
   Message[MessageAssert::assertionFailed, Rule[HoldForm@e, e], HoldForm@message, Most@Stack[], {(*$InputFileName, $Line doesn't work*)}];
   *)
   Message[message, args];
-  Throw@{$Failed, MessageAssert, Rule[HoldForm@e, e], HoldForm@message, Rule[HoldForm@{args}, {args}]}
+  Abort[]
+  (*Throw@{$Failed, MessageAssert, Rule[HoldForm@e, e], HoldForm@message, Rule[HoldForm@{args}, {args}]}*)
 ];
-
-MessageAssert[e_, args___] := StackInhibit@If[!TrueQ@e
+*)
+MessageAssert[e_, args___] := Assert[e, args](*StackInhibit@If[!TrueQ@e
   ,
-  Message[MessageAssert::assertionFailed, Rule[HoldForm@e, e], "<no message>", Most@Stack[], {}];
-  Throw@{$Failed, MessageAssert, Rule[HoldForm@e, e], Rule[HoldForm@{args}, {args}]}
-];
+  Message[MessageAssert::assertionFailed, Rule[HoldForm@e, e], "<no message>", {}];
+  (*Throw@{$Failed, MessageAssert, Rule[HoldForm@e, e], Rule[HoldForm@{args}, {args}]}*)
+  Abort[]
+];*)
 
 DefinePublicFunction~SetAttributes~HoldAll
 
@@ -133,9 +138,16 @@ SyntaxInformationArgumentPatternForFixedArgumentCountRange[
     Table[_, min]~Join~Table[_., max - min]
 
 (* -- core --- *)
-DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, body_, resultPattern_ : _] := (
-  MessageAssert[Context@f =!= "System`", General::illegalContext, Context@f =!= "System`", HoldForm@def];
+(*
+Makes a definition, wrapping it in all handlers so as to catch uncaught things
+(TODO consider aborting early instead -- or have the function declare what it can normally throw)
+check return types, fail on messages generated on the inside etc.
 
+TODO use runtime changeable functions for callbacks, instead of hardcoding the wrappers
+*)
+DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, body_, resultPattern_ : _, error_: Null] := (
+
+  MessageAssert[Context@f =!= "System`", General::illegalContext, Context@f, HoldForm@def];
   MessageAssert[Head@DownValueUsage@HoldPattern@def === DownValueUsage, General::alreadyDefined, HoldForm@def];
 
   DownValueUsage[Verbatim[HoldPattern@def]] = StringTemplate["\!\(\*RowBox[{\"``\", \"[\", ``, \"]\"}]\)`` ``"][
@@ -152,10 +164,12 @@ DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, b
 
   call : def := StackComplete@Check[CatchAll[ (*StackComplete for debuggability, remove in release version *)
 
-    {result=body}~With~(MessageAssert[result~MatchQ~resultPattern, General::unexpectedResultType, resultPattern, HoldForm@result]; result)
+    {result=body}~With~(
+      MessageAssert[result~MatchQ~resultPattern, General::unexpectedResultType, resultPattern, HoldForm@result, error];
+      result)
 
-    , (Message[Throw::nocatch, ##];$Failed )&]
-    , Message[General::unexpectedMessages, f, HoldForm@call];Throw@"unexpectedMessages"];
+    , (Message[Throw::nocatch, Row@{##, error}]; Abort[])&]
+    , Message[General::unexpectedMessages, f, HoldForm@call, error]; Abort[]];
 
   Module[{
     minmaxargc = MinMax@DeleteMissing@{CountArgumentsFromSyntaxInformation@f, Length@args}
@@ -164,33 +178,33 @@ DefinePublicFunction[f_Symbol, def_, args_List, cond : Null | _, usage_String, b
   ];
 
   DownValues@f = DeleteCases[DownValues@f, HoldPattern[Verbatim@HoldPattern[a : f[___]] :> _]];
-  DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a, Stack[]];Throw@Missing["Definition",HoldForm@a]));
+  DownValues@f~AppendTo~(HoldPattern[a : f[___]] :> (StackInhibit@Message[General::undefined, HoldForm@a]; Abort[]));
 );
 
 (* usability *)
 
-DefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _] :=
-    DefinePublicFunction[f, d, {args}, Null, usage, body,resultPattern]
+DefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _, error_: Null] :=
+    DefinePublicFunction[f, d, {args}, Null, usage, body,resultPattern,error]
 
-DefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_, resultPattern_ : _] :=
-    DefinePublicFunction[f, d, {args}, c, usage, body,resultPattern]
+DefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_, resultPattern_ : _, error_: Null] :=
+    DefinePublicFunction[f, d, {args}, c, usage, body,resultPattern,error]
 
 RedefinePublicFunction~SetAttributes~HoldAll
-RedefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _] := (
+RedefinePublicFunction[d : f_Symbol[args___], usage_String, body_, resultPattern_ : _, error_: Null] := (
     ClearAll[f];
     PublicSymbols[f];
-    DefinePublicFunction[d, usage, body,resultPattern];
+    DefinePublicFunction[d, usage, body,resultPattern,error];
 );
 
-RedefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_, resultPattern_ : _] := (
+RedefinePublicFunction[d : (f_Symbol[args___]~Verbatim[Condition]~c_), usage_String, body_, resultPattern_ : _, error_: Null] := (
   ClearAll[f];
   PublicSymbols[f];
-  DefinePublicFunction[d, usage, body,resultPattern];
+  DefinePublicFunction[d, usage, body,resultPattern,error];
 );
 
 (* errors *)
-a:DefinePublicFunction[___] := (Message[General::undefined, HoldForm@a, Stack[]];$Failed);
-a:RedefinePublicFunction[___] := (Message[General::undefined, HoldForm@a, Stack[]];$Failed);
+a:DefinePublicFunction[___] := (Message[General::undefined, HoldForm@a];Abort[]);
+a:RedefinePublicFunction[___] := (Message[General::undefined, HoldForm@a];Abort[]);
 
 
 End[] (* `Private` *)
